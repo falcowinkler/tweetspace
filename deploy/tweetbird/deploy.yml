@@ -1,0 +1,46 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    service: tweetbird
+  name: tweetbird
+spec:
+  selector:
+    matchLabels:
+      service: tweetbird
+  template:
+    metadata:
+      labels:
+        service: tweetbird
+    spec:
+      containers: 
+      - image: falcowinkler/tweetbird
+        envFrom:
+          secretRef:
+            name: twitter-api-secret
+        env: 
+        - name: BOOTSTRAP_SERVERS
+          value: kafka-1.kafka.aca534.svc.cluster.local 
+        - name: SCHEMA_REGISTRY_URL
+          value: schema-registry.aca534.svc.cluster.local
+        imagePullPolicy: Always
+        name: tweetbird
+        ports:
+        - containerPort: 8000
+          protocol: TCP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    service: tweetbird
+  name: tweetbird
+spec:
+  ports:
+  - name: http
+    port: 8000
+    protocol: TCP
+    targetPort: 8000
+  selector:
+    service: tweetbird
+  type: ClusterIP
