@@ -14,19 +14,19 @@ spec:
         service: tweetbird
     spec:
       containers: 
-      - image: falcowinkler/tweetbird
+      - image: falcowinkler/tweetbird:master
         envFrom:
-          secretRef:
+        - secretRef:
             name: twitter-api-secret
         env: 
         - name: BOOTSTRAP_SERVERS
-          value: kafka-1.kafka.aca534.svc.cluster.local 
+          value: kafka-0.kafka-svc.aca534.svc.cluster.local:9092,kafka-1.kafka-svc.aca534.svc.cluster.local:9092
         - name: SCHEMA_REGISTRY_URL
           value: schema-registry.aca534.svc.cluster.local
         imagePullPolicy: Always
         name: tweetbird
         ports:
-        - containerPort: 8000
+        - containerPort: 8080
           protocol: TCP
 ---
 apiVersion: v1
@@ -38,9 +38,9 @@ metadata:
 spec:
   ports:
   - name: http
-    port: 8000
+    port: 8080
     protocol: TCP
-    targetPort: 8000
+    targetPort: 8080
   selector:
     service: tweetbird
   type: ClusterIP

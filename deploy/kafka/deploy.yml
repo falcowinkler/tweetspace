@@ -30,7 +30,7 @@ metadata:
   name: kafka
 spec:
   serviceName: kafka-svc
-  replicas: 1
+  replicas: 2
   template:
     metadata:
       labels:
@@ -74,7 +74,7 @@ spec:
         - -c
         - "exec kafka-server-start.sh /opt/kafka/config/server.properties --override broker.id=${HOSTNAME##*-} \
           --override listeners=PLAINTEXT://:9092 \
-          --override zookeeper.connect=zk-0.zk-hs.aca534.svc.cluster.local:2181 \
+          --override zookeeper.connect=zk-0.zk-hs.aca534.svc.cluster.local:2181,zk-1.zk-hs.aca534.svc.cluster.local:2181 \
           --override log.dir=/var/lib/kafka \
           --override auto.create.topics.enable=true \
           --override auto.leader.rebalance.enable=true \
