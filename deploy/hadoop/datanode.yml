@@ -18,7 +18,7 @@ metadata:
   name: hdfs-datanode
 spec:
   serviceName: "hdfs-datanode"
-  replicas: 1
+  replicas: 3
   template:
     metadata:
       labels:
@@ -26,7 +26,7 @@ spec:
     spec:
       containers:
         - name: datanode
-          image: uhopper/hadoop-datanode:2.8.1
+          image: bde2020/hadoop-datanode:2.0.0-hadoop3.1.1-java8
           env:
             - name: CORE_CONF_fs_defaultFS
               value: hdfs://hdfs-namenode-0.hdfs-namenode.aca534.svc.cluster.local:8020

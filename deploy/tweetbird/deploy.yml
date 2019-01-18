@@ -22,7 +22,13 @@ spec:
         - name: BOOTSTRAP_SERVERS
           value: kafka-0.kafka-svc.aca534.svc.cluster.local:9092,kafka-1.kafka-svc.aca534.svc.cluster.local:9092
         - name: SCHEMA_REGISTRY_URL
-          value: schema-registry.aca534.svc.cluster.local
+          value: http://schema.aca534.svc.cluster.local:8081
+        - name: TOPICS_PARTITION_COUNT
+          value: "1"
+        - name: TOPICS_REPLICATION_COUNT
+          value: "2"
+        - name: ZK_CONNECT
+          value: "zk-0.zk-hs.aca534.svc.cluster.local:2181,zk-1.zk-hs.aca534.svc.cluster.local:2181"
         imagePullPolicy: Always
         name: tweetbird
         ports:

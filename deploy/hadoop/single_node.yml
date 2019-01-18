@@ -1,0 +1,61 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    service: hdfs
+  name: hdfs
+spec:
+  selector:
+    matchLabels:
+      service: hdfs
+  template:
+    metadata:
+      labels:
+        service: hdfs
+    spec:
+      containers: 
+      - image: mdouchement/hdfs
+        imagePullPolicy: Always
+        name: hdfs
+        ports:
+        - containerPort: 8020
+        - containerPort: 50010
+        - containerPort: 50020
+        - containerPort: 50070
+        - containerPort: 50075
+        - containerPort: 50090
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    service: hdfs
+  name: hdfs
+spec:
+  ports:
+  - name: namenode
+    port: 8020
+    protocol: TCP
+    targetPort: 8020
+  - name: datanode
+    port: 50010
+    protocol: TCP
+    targetPort: 50010
+  - name: datanode-ipc
+    port: 50020
+    protocol: TCP
+    targetPort: 50020
+  - name: ui
+    port: 50070
+    protocol: TCP
+    targetPort: 50070
+  - name: datanode-http
+    port: 50075
+    protocol: TCP
+  - name: secondary-namenode
+    port: 50090
+    protocol: TCP
+    targetPort: 50075
+  selector:
+    service: hdfs
+  type: ClusterIP

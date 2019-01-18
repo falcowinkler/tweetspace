@@ -1,0 +1,4 @@
+FROM falcowinkler/gobblin-mapreduce
+
+ADD kafka-hdfs.job .
+ENTRYPOINT ["bin/gobblin-mapreduce.sh", "--conf", "kafka-hdfs.job"]

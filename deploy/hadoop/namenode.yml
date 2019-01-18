@@ -8,6 +8,8 @@ spec:
   ports:
   - port: 8020
     name: fs
+  - port: 9870
+    name: ui
   clusterIP: None
   selector:
     app: hdfs-namenode
@@ -27,11 +29,13 @@ spec:
       terminationGracePeriodSeconds: 0
       containers:
         - name: hdfs-namenode
-          image: uhopper/hadoop-namenode:2.8.1
+          image: bde2020/hadoop-namenode:2.0.0-hadoop3.1.1-java8
           env:
             - name: CLUSTER_NAME
               value: hdfs-k8s
           ports:
           - containerPort: 8020
             name: fs
+          - containerPort: 9870
+            name: ui
       restartPolicy: Always
