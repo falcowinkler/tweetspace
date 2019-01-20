@@ -1,4 +1,11 @@
 FROM falcowinkler/gobblin
-RUN wget http://apache.mivzakim.net/hadoop/common/hadoop-3.1.1/hadoop-3.1.1.tar.gz &&     tar -xzf hadoop-3.1.1.tar.gz &&     rm hadoop-3.1.1.tar.gz &&     cd /gobblin-dist/lib/ &&     wget http://central.maven.org/maven2/org/scala-lang/scala-library/2.11.8/scala-library-2.11.8.jar 
-ENV HADOOP_BIN_DIR=/gobblin-dist/hadoop-3.1.1/bin 
+RUN wget http://apache.lauf-forum.at/hadoop/common/hadoop-2.8.5/hadoop-2.8.5.tar.gz &&  \
+    tar -xzf hadoop-2.8.5.tar.gz &&  \
+    rm hadoop-2.8.5.tar.gz &&  \
+    cd /gobblin-dist/lib/ &&  \
+    wget http://central.maven.org/maven2/org/scala-lang/scala-library/2.11.8/scala-library-2.11.8.jar
+
+ADD core-site.xml /gobblin-dist/hadoop-2.8.5/etc/hadoop
+
+ENV HADOOP_BIN_DIR=/gobblin-dist/hadoop-2.8.5/bin
 WORKDIR /gobblin-dist

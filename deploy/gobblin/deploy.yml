@@ -11,16 +11,14 @@ spec:
         service: gobblin
     spec:
       restartPolicy: Never
-      containers: 
-      - image: falcowinkler/kafka-hdfs-gobblin
+      containers:
+      - image: falcowinkler/job-kafka-hdfs:latest
         imagePullPolicy: Always
         name: gobblin
-        env: 
+        env:
         - name: KAFKA_BROKERS
           value: kafka-0.kafka-svc.aca534.svc.cluster.local:9092,kafka-1.kafka-svc.aca534.svc.cluster.local:9092
         - name: SCHEMA_REG_URL
           value: http://schema.aca534.svc.cluster.local:8081
         - name: HADOOP_FS_URI
-          value: hdfs://hdfs-namenode-0.hdfs-namenode.aca534.svc.cluster.local:8020
-  
-    
+          value: hdfs://namenode-0.namenode.aca534.svc.cluster.local:9000
