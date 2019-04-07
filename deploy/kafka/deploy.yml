@@ -43,7 +43,7 @@ spec:
                 matchExpressions:
                   - key: "app"
                     operator: In
-                    values: 
+                    values:
                     - kafka
               topologyKey: "kubernetes.io/hostname"
         podAffinity:
@@ -54,7 +54,7 @@ spec:
                     matchExpressions:
                       - key: "app"
                         operator: In
-                        values: 
+                        values:
                         - zk
                  topologyKey: "kubernetes.io/hostname"
       terminationGracePeriodSeconds: 300
@@ -170,9 +170,9 @@ spec:
           mountPath: /var/lib/kafka
 #        readinessProbe:
 #          exec:
-#           command: 
-#            - sh 
-#            - -c 
+#           command:
+#            - sh
+#            - -c
 #            - "/opt/kafka/bin/kafka-broker-api-versions.sh --bootstrap-server=localhost:9092"
       securityContext:
         runAsUser: 1000
