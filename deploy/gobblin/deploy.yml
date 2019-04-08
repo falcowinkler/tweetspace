@@ -21,7 +21,7 @@ spec:
             name: gobblin
             env:
             - name: KAFKA_BROKERS
-              value: kafka-0.kafka-svc.aca534.svc.cluster.local:9092,kafka-1.kafka-svc.aca534.svc.cluster.local:9092
+              value: kafka-svc.aca534.svc.cluster.local:9092
             - name: SCHEMA_REG_URL
               value: http://schema.aca534.svc.cluster.local:8081
             - name: HADOOP_FS_URI

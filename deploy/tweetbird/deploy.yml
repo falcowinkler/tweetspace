@@ -13,14 +13,14 @@ spec:
       labels:
         service: tweetbird
     spec:
-      containers: 
+      containers:
       - image: falcowinkler/tweetbird:master
         envFrom:
         - secretRef:
             name: twitter-api-secret
-        env: 
+        env:
         - name: BOOTSTRAP_SERVERS
-          value: kafka-0.kafka-svc.aca534.svc.cluster.local:9092,kafka-1.kafka-svc.aca534.svc.cluster.local:9092
+          value: kafka-svc.aca534.svc.cluster.local:9092
         - name: SCHEMA_REGISTRY_URL
           value: http://schema.aca534.svc.cluster.local:8081
         - name: TOPICS_PARTITION_COUNT
