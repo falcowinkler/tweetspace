@@ -14,7 +14,7 @@ spec:
           labels:
             service: gobblin
         spec:
-          restartPolicy: Never
+          restartPolicy: OnFailure
           containers:
           - image: falcowinkler/job-kafka-hdfs:latest
             imagePullPolicy: Always

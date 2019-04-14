@@ -39,7 +39,7 @@ spec:
         - name: KAFKA_LOG_DIRS
           value: /opt/kafka/data/logs
         - name: KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR
-          value: "3"
+          value: "2"
         - name: KAFKA_JMX_PORT
           value: "5555"
         image: confluentinc/cp-kafka:4.1.2-2
@@ -73,7 +73,7 @@ spec:
         terminationMessagePolicy: File
         volumeMounts:
         - mountPath: /opt/kafka/data
-          name: datadir
+          name: kafkadata
       dnsPolicy: ClusterFirst
       restartPolicy: Always
       schedulerName: default-scheduler
@@ -83,13 +83,13 @@ spec:
     type: OnDelete
   volumeClaimTemplates:
   - metadata:
-      name: datadir
+      name: kafkadata
     spec:
       accessModes:
       - ReadWriteOnce
       resources:
         requests:
-          storage: 1Gi
+          storage: 4Gi
       storageClassName: rook-block
 
 
