@@ -1,0 +1,35 @@
+{
+  "type": "kafka",
+  "dataSchema": {
+    "dataSource": “userregs",
+    "parser": {
+      "type": "avro_stream",
+      "avroBytesDecoder" : {
+        "type" : "schema_registry",
+        "url" : "http://localhost:8093"
+      }
+    },
+    "metricsSpec" : [],
+    "granularitySpec": {
+      "type": "uniform",
+      "segmentGranularity": "DAY",
+      "queryGranularity": "NONE",
+      "rollup": false
+    }
+  },
+  "tuningConfig": {
+    "type": "kafka",
+    "workerThreads": 2,
+    "reportParseExceptions": true
+  },
+  "ioConfig": {
+    "topic": "user_registrations",
+    "replicas": 1,
+    "taskDuration": "PT10M",
+    "completionTimeout": "PT20M",
+    "consumerProperties": {
+      "bootstrap.servers": "localhost:9092"
+    },
+    "useEarliestOffset": true
+  }
+}

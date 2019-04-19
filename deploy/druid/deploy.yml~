@@ -1,0 +1,39 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    service: druid
+  name: druid
+spec:
+  selector:
+    matchLabels:
+      service: druid
+  template:
+    metadata:
+      labels:
+        service: druid
+    spec:
+      containers:
+      - image: druidio/example-cluster
+        imagePullPolicy: Always
+        name: druid
+        ports:
+        - containerPort: 8081
+          protocol: TCP
+# ---
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   labels:
+#     service: druid
+#   name: druid
+# spec:
+#   ports:
+#   - name: http
+#     port: 8080
+#     protocol: TCP
+#     targetPort: 8080
+#   selector:
+#     service: druid
+#   type: ClusterIP
+

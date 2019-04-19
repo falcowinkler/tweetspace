@@ -19,9 +19,9 @@ spec:
         - name: ZOOKEEPER_QUORUM
           value: "[\"zk-0.zk-hs.aca534.svc.cluster.local:2181\",\"zk-1.zk-hs.aca534.svc.cluster.local:2181\"]"
         - name: KAFKA_QUORUM
-          value: "[\"kafka-0.kafka-svc.aca534.svc.cluster.local:9092\",\"kafka-1.kafka-svc.aca534.svc.cluster.local:9092\"]"
+          value: "[\"kafka-0.kafka-svc.aca534.svc.cluster.local:9092\"]"
         imagePullPolicy: Always
-        name: burrow
+        name: burrow 
         ports:
         - containerPort: 8000
           protocol: TCP
